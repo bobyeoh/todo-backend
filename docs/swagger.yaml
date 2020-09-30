@@ -1,0 +1,235 @@
+definitions:
+  requests.LoginRequest:
+    properties:
+      name:
+        example: bob
+        type: string
+      password:
+        example: "11111111"
+        type: string
+    required:
+    - name
+    - password
+    type: object
+  requests.TaskRequest:
+    properties:
+      column_id:
+        example: 1
+        type: integer
+      name:
+        example: task1
+        type: string
+    required:
+    - column_id
+    - name
+    type: object
+  responses.Column:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  responses.GetColumns:
+    properties:
+      columns:
+        items:
+          $ref: '#/definitions/responses.Column'
+        type: array
+    type: object
+  responses.GetTasks:
+    properties:
+      tasks:
+        items:
+          $ref: '#/definitions/responses.Task'
+        type: array
+    type: object
+  responses.Login:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  responses.Task:
+    properties:
+      column_id:
+        type: integer
+      id:
+        type: integer
+      name:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  utils.ErrorCode:
+    properties:
+      code:
+        type: integer
+      message:
+        type: string
+    type: object
+info:
+  contact: {}
+  license: {}
+paths:
+  /column:
+    get:
+      description: Get All Columns
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.GetColumns'
+        "500":
+          description: UnknownError
+          schema:
+            $ref: '#/definitions/utils.ErrorCode'
+      summary: Get All Columns
+      tags:
+      - Column
+  /task:
+    post:
+      description: Create task
+      parameters:
+      - description: name and column_id
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/requests.TaskRequest'
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/responses.Task'
+        "400":
+          description: TheColumnDoesNotExist
+          schema:
+            $ref: '#/definitions/utils.ErrorCode'
+        "403":
+          description: PermissionDenied
+          schema:
+            $ref: '#/definitions/utils.ErrorCode'
+        "404":
+          description: TheTaskDoesNotExist
+          schema:
+            $ref: '#/definitions/utils.ErrorCode'
+        "500":
+          description: UnknownError
+          schema:
+            $ref: '#/definitions/utils.ErrorCode'
+      summary: Create task
+      tags:
+      - Task
+  /task/{column_id}:
+    get:
+      description: Get tasks by column id
+      parameters:
+      - description: Column ID
+        in: path
+        name: column_id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.GetTasks'
+        "500":
+          description: UnknownError
+          schema:
+            $ref: '#/definitions/utils.ErrorCode'
+      summary: Get tasks by column id
+      tags:
+      - Task
+  /task/{id}:
+    delete:
+      description: Delete Task
+      parameters:
+      - description: Task ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200": {}
+        "403":
+          description: PermissionDenied
+          schema:
+            $ref: '#/definitions/utils.ErrorCode'
+        "404":
+          description: TheTaskDoesNotExist
+          schema:
+            $ref: '#/definitions/utils.ErrorCode'
+        "500":
+          description: UnknownError
+          schema:
+            $ref: '#/definitions/utils.ErrorCode'
+      summary: Delete Task
+      tags:
+      - Task
+    put:
+      description: Update Task
+      parameters:
+      - description: Task ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: name and column_id
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/requests.TaskRequest'
+      responses:
+        "200": {}
+        "400":
+          description: TheColumnDoesNotExist
+          schema:
+            $ref: '#/definitions/utils.ErrorCode'
+        "403":
+          description: PermissionDenied
+          schema:
+            $ref: '#/definitions/utils.ErrorCode'
+        "404":
+          description: TheTaskDoesNotExist
+          schema:
+            $ref: '#/definitions/utils.ErrorCode'
+        "500":
+          description: UnknownError
+          schema:
+            $ref: '#/definitions/utils.ErrorCode'
+      summary: Update Task
+      tags:
+      - Task
+  /user/login:
+    post:
+      description: Login
+      parameters:
+      - description: Name and password
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/requests.LoginRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Login'
+        "401":
+          description: InvalidCredentials
+          schema:
+            $ref: '#/definitions/utils.ErrorCode'
+        "500":
+          description: UnknownError
+          schema:
+            $ref: '#/definitions/utils.ErrorCode'
+      summary: Login
+      tags:
+      - User
+swagger: "2.0"
