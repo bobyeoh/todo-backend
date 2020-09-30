@@ -11,20 +11,21 @@ import (
 
 // Routes godoc
 func Routes(server *app.Server) {
+	prefix := "/api"
 	user := controllers.InitUser(server)
 	column := controllers.InitColumn(server)
 	task := controllers.InitTask(server)
 
 	server.Echo.Use(middleware.Logger())
 
-	server.Echo.GET("/swagger/*", echoSwagger.WrapHandler)
+	server.Echo.GET(prefix+"/swagger/*", echoSwagger.WrapHandler)
 
-	server.Echo.POST("/user/login", user.Login)
+	server.Echo.POST(prefix+"/user/login", user.Login)
 
-	server.Echo.GET("/column", column.GetColumns, permission.Auth(server))
+	server.Echo.GET(prefix+"/column", column.GetColumns, permission.Auth(server))
 
-	server.Echo.GET("/task", task.GetTasks, permission.Auth(server))
-	server.Echo.POST("/task", task.CreateTask, permission.Auth(server))
-	server.Echo.PUT("/task", task.UpdateTask, permission.Auth(server))
-	server.Echo.DELETE("/task", task.DeleteTask, permission.Auth(server))
+	server.Echo.GET(prefix+"/task", task.GetTasks, permission.Auth(server))
+	server.Echo.POST(prefix+"/task", task.CreateTask, permission.Auth(server))
+	server.Echo.PUT(prefix+"/task", task.UpdateTask, permission.Auth(server))
+	server.Echo.DELETE(prefix+"/task", task.DeleteTask, permission.Auth(server))
 }
