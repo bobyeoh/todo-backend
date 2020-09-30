@@ -13,12 +13,17 @@ The project is developed by Golang based on the echo framework, and the database
     cd todo-backend
     sh build.sh
     
-default url: http://localhost:8888/swagger/index.html
+default url: http://localhost:8888/api/swagger/index.html
 
 **Test**
 When the container is running
 
     sh test.sh
+
+**Preview**
+
+https://todo.001.gs/api/swagger/index.html
+
 
 # Dependency
 
