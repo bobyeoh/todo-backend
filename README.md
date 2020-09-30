@@ -41,29 +41,29 @@ When the container is running
 
     ├── README.md
 	├── app
-	│   ├── controllers *// Business logic and APIs unit testing*
-	│   ├── database *// Database configuration*
-	│   ├── models *// ORM models*
-	│   ├── permission *// JWT middleware*
-	│   ├── repositories *// Read database operations*
-	│   ├── requests *// Incoming parameter model definition and data validation*
-	│   ├── responses *// Response model definition for APIs*
-	│   ├── routes *// router*
-	│   ├── server.go *// Create instance*
-	│   ├── services *// Write database operations*
-	│   ├── utils *// Static functions*
-	│   └── validation *// Request model data verification*
-	├── build.sh *// Build project*
-	├── dev.env *// Environment variable for development*
-	├── dockerfile *// docker file*
-	├── docs *// swagger folder*
+	│   ├── controllers // Business logic and APIs unit testing
+	│   ├── database // Database configuration
+	│   ├── models // ORM models
+	│   ├── permission // JWT middleware
+	│   ├── repositories // Read database operations
+	│   ├── requests // Incoming parameter model definition and data validation
+	│   ├── responses // Response model definition for APIs
+	│   ├── routes // router
+	│   ├── server.go // Create instance
+	│   ├── services // Write database operations
+	│   ├── utils // Static functions
+	│   └── validation // Request model data verification
+	├── build.sh // Build project
+	├── dev.env // Environment variable for development
+	├── dockerfile // docker file
+	├── docs // swagger folder
 	│   ├── docs.go
 	│   ├── swagger.json
 	│   └── swagger.yaml
 	├── go.mod
 	├── go.sum
-	├── main.go *// main file*
-	├── start.sh *// Start container*
-	├── stop.sh *// Stop container*
-	└── test.sh *// unit test*
+	├── main.go // main file
+	├── start.sh // Start container
+	├── stop.sh // Stop container
+	└── test.sh // unit test
 
