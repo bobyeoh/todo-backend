@@ -38,30 +38,32 @@ When the container is running
  4. In order to prevent hackers from cracking the login password through exhaustive methods, I added a logic: once the password is entered incorrectly 3 times, the account will be locked for 10 minutes. This can effectively reduce the exhaustive efficiency.
  
 # Project structure
-├── README.md
-├── app
-│   ├── controllers *// Business logic and APIs unit testing*
-│   ├── database *// Database configuration*
-│   ├── models *// ORM models*
-│   ├── permission *// JWT middleware*
-│   ├── repositories *// Read database operations*
-│   ├── requests *// Incoming parameter model definition and data validation*
-│   ├── responses *// Response model definition for APIs*
-│   ├── routes *// router*
-│   ├── server.go *// Create instance*
-│   ├── services *// Write database operations*
-│   ├── utils *// Static functions*
-│   └── validation *// Request model data verification*
-├── build.sh *// Build project*
-├── dev.env *// Environment variable for development*
-├── dockerfile *// docker file*
-├── docs *// swagger folder*
-│   ├── docs.go
-│   ├── swagger.json
-│   └── swagger.yaml
-├── go.mod
-├── go.sum
-├── main.go *// main file*
-├── start.sh *// Start container*
-├── stop.sh *// Stop container*
-└── test.sh *// unit test*
+
+    ├── README.md
+	├── app
+	│   ├── controllers *// Business logic and APIs unit testing*
+	│   ├── database *// Database configuration*
+	│   ├── models *// ORM models*
+	│   ├── permission *// JWT middleware*
+	│   ├── repositories *// Read database operations*
+	│   ├── requests *// Incoming parameter model definition and data validation*
+	│   ├── responses *// Response model definition for APIs*
+	│   ├── routes *// router*
+	│   ├── server.go *// Create instance*
+	│   ├── services *// Write database operations*
+	│   ├── utils *// Static functions*
+	│   └── validation *// Request model data verification*
+	├── build.sh *// Build project*
+	├── dev.env *// Environment variable for development*
+	├── dockerfile *// docker file*
+	├── docs *// swagger folder*
+	│   ├── docs.go
+	│   ├── swagger.json
+	│   └── swagger.yaml
+	├── go.mod
+	├── go.sum
+	├── main.go *// main file*
+	├── start.sh *// Start container*
+	├── stop.sh *// Stop container*
+	└── test.sh *// unit test*
+
