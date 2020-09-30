@@ -1,0 +1,1 @@
+docker exec -it todo-backend go test ./app/controllers
