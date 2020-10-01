@@ -248,6 +248,12 @@ var doc = `{
                             "$ref": "#/definitions/responses.Login"
                         }
                     },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorCode"
+                        }
+                    },
                     "401": {
                         "description": "InvalidCredentials",
                         "schema": {
@@ -260,6 +266,18 @@ var doc = `{
                             "$ref": "#/definitions/utils.ErrorCode"
                         }
                     }
+                }
+            }
+        },
+        "/user/logout": {
+            "get": {
+                "description": "Logout",
+                "tags": [
+                    "User"
+                ],
+                "summary": "Logout",
+                "responses": {
+                    "200": {}
                 }
             }
         }

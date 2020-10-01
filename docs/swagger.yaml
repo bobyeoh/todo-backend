@@ -221,6 +221,10 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/responses.Login'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorCode'
         "401":
           description: InvalidCredentials
           schema:
@@ -230,6 +234,14 @@ paths:
           schema:
             $ref: '#/definitions/utils.ErrorCode'
       summary: Login
+      tags:
+      - User
+  /user/logout:
+    get:
+      description: Logout
+      responses:
+        "200": {}
+      summary: Logout
       tags:
       - User
 swagger: "2.0"

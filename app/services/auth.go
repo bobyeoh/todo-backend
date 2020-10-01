@@ -28,6 +28,11 @@ func (service *AuthServices) ExtendKey(auth *models.Auth, expireTime time.Time) 
 	return service.Db.Save(&auth).Error
 }
 
+// DeleteSession godoc
+func (service *AuthServices) DeleteSession(token string) error {
+	return service.Db.Where("token = ?", token).Delete(&models.Auth{}).Error
+}
+
 // ClearSession godoc
 func (service *AuthServices) ClearSession() error {
 	now := time.Now()

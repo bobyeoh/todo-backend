@@ -104,3 +104,27 @@ func (handler *UserHandler) Login(c echo.Context) error {
 	result := responses.NewLogin(user.ID, user.Name)
 	return c.JSON(http.StatusOK, result)
 }
+
+// Logout godoc
+// @Tags User
+// @Summary Logout
+// @Description Logout
+// @Success 200
+// @Router /user/logout [get]
+func (handler *UserHandler) Logout(c echo.Context) error {
+	authService := services.InitAuth(handler.server.DB)
+	// init
+
+	cookie, err := c.Cookie(os.Getenv("COOKIE_KEY"))
+	if err != nil {
+		return c.NoContent(http.StatusOK)
+	}
+	authService.DeleteSession(cookie.Value)
+	// remove token
+
+	cookie.MaxAge = -1
+	c.SetCookie(cookie)
+	// set cookie
+
+	return c.NoContent(http.StatusOK)
+}

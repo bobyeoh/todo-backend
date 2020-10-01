@@ -22,6 +22,8 @@ func Routes(server *app.Server) {
 
 	server.Echo.POST(prefix+"/user/login", user.Login)
 
+	server.Echo.GET(prefix+"/user/logout", user.Logout)
+
 	server.Echo.GET(prefix+"/column", column.GetColumns, permission.Auth(server))
 
 	server.Echo.GET(prefix+"/task", task.GetTasks, permission.Auth(server))
