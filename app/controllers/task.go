@@ -35,7 +35,7 @@ func InitTask(server *app.Server) *TaskHandler {
 // @Router /api/task/{column_id} [get]
 func (handler *TaskHandler) GetTasks(c echo.Context) error {
 	var tasks []responses.Task
-	columnID, _ := strconv.Atoi(c.Param("column_id"))
+	columnID, _ := strconv.Atoi(c.QueryParam("column_id"))
 	auth := c.Get("auth").(*models.Auth)
 	// Get parameters
 	taskRepo := repositories.InitTask(handler.server.DB)
@@ -116,7 +116,7 @@ func (handler *TaskHandler) CreateTask(c echo.Context) error {
 func (handler *TaskHandler) UpdateTask(c echo.Context) error {
 	var task models.Task
 	var newColumn models.Column
-	id, _ := strconv.Atoi(c.Param("id"))
+	id, _ := strconv.Atoi(c.QueryParam("id"))
 	auth := c.Get("auth").(*models.Auth)
 	taskRequest := new(requests.TaskRequest)
 	if err := c.Bind(taskRequest); err != nil {
@@ -189,7 +189,7 @@ func (handler *TaskHandler) UpdateTask(c echo.Context) error {
 // @Router /api/task/{id} [delete]
 func (handler *TaskHandler) DeleteTask(c echo.Context) error {
 	var task models.Task
-	id, _ := strconv.Atoi(c.Param("id"))
+	id, _ := strconv.Atoi(c.QueryParam("id"))
 	auth := c.Get("auth").(*models.Auth)
 	// Get parameters
 	taskRepo := repositories.InitTask(handler.server.DB)
