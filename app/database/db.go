@@ -10,6 +10,7 @@ import (
 // InitDB godoc
 func InitDB() *gorm.DB {
 	db, err := gorm.Open("sqlite3", "file::memory:?cache=shared")
+	db.DB().SetMaxOpenConns(1)
 	if err != nil {
 		panic(err.Error())
 	}

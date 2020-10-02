@@ -29,13 +29,13 @@ func InitTask(server *app.Server) *TaskHandler {
 // @Tags Task
 // @Summary Get tasks by column id
 // @Description Get tasks by column id
-// @Param column_id path int true "Column ID"
+// @Param id path int true "Column ID"
 // @Success 200 {object} responses.GetTasks
 // @Failure 500 {object} utils.ErrorCode "UnknownError"
 // @Router /api/task/{column_id} [get]
 func (handler *TaskHandler) GetTasks(c echo.Context) error {
 	var tasks []responses.Task
-	columnID, _ := strconv.Atoi(c.QueryParam("column_id"))
+	columnID, _ := strconv.Atoi(c.Param("id"))
 	auth := c.Get("auth").(*models.Auth)
 	// Get parameters
 	taskRepo := repositories.InitTask(handler.server.DB)
@@ -116,7 +116,7 @@ func (handler *TaskHandler) CreateTask(c echo.Context) error {
 func (handler *TaskHandler) UpdateTask(c echo.Context) error {
 	var task models.Task
 	var newColumn models.Column
-	id, _ := strconv.Atoi(c.QueryParam("id"))
+	id, _ := strconv.Atoi(c.Param("id"))
 	auth := c.Get("auth").(*models.Auth)
 	taskRequest := new(requests.TaskRequest)
 	if err := c.Bind(taskRequest); err != nil {
@@ -154,7 +154,7 @@ func (handler *TaskHandler) UpdateTask(c echo.Context) error {
 	// organize email content
 
 	if task.ColumnID != taskRequest.ColumnID {
-		if columnRepo.GetColumn(uint(id), auth.UserID, &newColumn) != nil {
+		if columnRepo.GetColumn(taskRequest.ColumnID, auth.UserID, &newColumn) != nil {
 			return c.JSON(http.StatusBadRequest, utils.TheColumnDoesNotExist)
 		}
 		if newColumn.ID == 0 {
@@ -189,7 +189,7 @@ func (handler *TaskHandler) UpdateTask(c echo.Context) error {
 // @Router /api/task/{id} [delete]
 func (handler *TaskHandler) DeleteTask(c echo.Context) error {
 	var task models.Task
-	id, _ := strconv.Atoi(c.QueryParam("id"))
+	id, _ := strconv.Atoi(c.Param("id"))
 	auth := c.Get("auth").(*models.Auth)
 	// Get parameters
 	taskRepo := repositories.InitTask(handler.server.DB)

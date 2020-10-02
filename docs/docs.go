@@ -132,7 +132,7 @@ var doc = `{
                 }
             }
         },
-        "/api/task/{id}": {
+        "/api/task/{task_id}": {
             "put": {
                 "description": "Update Task",
                 "tags": [
@@ -143,7 +143,7 @@ var doc = `{
                     {
                         "type": "integer",
                         "description": "Task ID",
-                        "name": "id",
+                        "name": "task_id",
                         "in": "path",
                         "required": true
                     },
@@ -195,7 +195,7 @@ var doc = `{
                     {
                         "type": "integer",
                         "description": "Task ID",
-                        "name": "id",
+                        "name": "task_id",
                         "in": "path",
                         "required": true
                     }

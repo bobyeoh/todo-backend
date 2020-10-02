@@ -145,13 +145,13 @@ paths:
       summary: Get tasks by column id
       tags:
       - Task
-  /api/task/{id}:
+  /api/task/{task_id}:
     delete:
       description: Delete Task
       parameters:
       - description: Task ID
         in: path
-        name: id
+        name: task_id
         required: true
         type: integer
       responses:
@@ -176,7 +176,7 @@ paths:
       parameters:
       - description: Task ID
         in: path
-        name: id
+        name: task_id
         required: true
         type: integer
       - description: name and column_id

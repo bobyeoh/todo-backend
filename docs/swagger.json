@@ -112,7 +112,7 @@
                 }
             }
         },
-        "/api/task/{id}": {
+        "/api/task/{task_id}": {
             "put": {
                 "description": "Update Task",
                 "tags": [
@@ -123,7 +123,7 @@
                     {
                         "type": "integer",
                         "description": "Task ID",
-                        "name": "id",
+                        "name": "task_id",
                         "in": "path",
                         "required": true
                     },
@@ -175,7 +175,7 @@
                     {
                         "type": "integer",
                         "description": "Task ID",
-                        "name": "id",
+                        "name": "task_id",
                         "in": "path",
                         "required": true
                     }
