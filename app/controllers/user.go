@@ -56,6 +56,12 @@ func (handler *UserHandler) Login(c echo.Context) error {
 
 	user := models.User{}
 	userRepo.GetUserByName(&user, loginRequest.Name)
+
+	if user.ID != 0 && now.Sub(user.LockTime).Minutes() < 10 {
+		return c.JSON(http.StatusUnauthorized, utils.TooManyRetry)
+	}
+	// account has been locked
+
 	if user.ID == 0 || user.Password != utils.MD5(loginRequest.Password) {
 		if user.ID != 0 {
 			userService.AddRetry(&user)
@@ -64,14 +70,10 @@ func (handler *UserHandler) Login(c echo.Context) error {
 			}
 		}
 		// maximum 3 times retries, lock if exceeded
+
 		return c.JSON(http.StatusUnauthorized, utils.InvalidCredentials)
 	}
 	// Verify name and password
-
-	if now.Sub(user.LockTime).Minutes() < 10 {
-		return c.JSON(http.StatusUnauthorized, utils.TooManyRetry)
-	}
-	// account has been locked
 
 	duration, _ := time.ParseDuration(os.Getenv("SESSION_EFFECTIVE_DURATION"))
 	expireTime := now.Add(duration)
