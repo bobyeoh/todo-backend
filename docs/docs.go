@@ -25,7 +25,7 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/column": {
+        "/api/column": {
             "get": {
                 "description": "Get All Columns",
                 "tags": [
@@ -48,7 +48,7 @@ var doc = `{
                 }
             }
         },
-        "/task": {
+        "/api/task": {
             "post": {
                 "description": "Create task",
                 "tags": [
@@ -100,7 +100,7 @@ var doc = `{
                 }
             }
         },
-        "/task/{column_id}": {
+        "/api/task/{column_id}": {
             "get": {
                 "description": "Get tasks by column id",
                 "tags": [
@@ -132,7 +132,7 @@ var doc = `{
                 }
             }
         },
-        "/task/{id}": {
+        "/api/task/{id}": {
             "put": {
                 "description": "Update Task",
                 "tags": [
@@ -223,7 +223,7 @@ var doc = `{
                 }
             }
         },
-        "/user/login": {
+        "/api/user/login": {
             "post": {
                 "description": "Login",
                 "tags": [
@@ -269,7 +269,7 @@ var doc = `{
                 }
             }
         },
-        "/user/logout": {
+        "/api/user/logout": {
             "get": {
                 "description": "Logout",
                 "tags": [

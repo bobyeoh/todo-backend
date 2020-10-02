@@ -5,7 +5,7 @@
         "license": {}
     },
     "paths": {
-        "/column": {
+        "/api/column": {
             "get": {
                 "description": "Get All Columns",
                 "tags": [
@@ -28,7 +28,7 @@
                 }
             }
         },
-        "/task": {
+        "/api/task": {
             "post": {
                 "description": "Create task",
                 "tags": [
@@ -80,7 +80,7 @@
                 }
             }
         },
-        "/task/{column_id}": {
+        "/api/task/{column_id}": {
             "get": {
                 "description": "Get tasks by column id",
                 "tags": [
@@ -112,7 +112,7 @@
                 }
             }
         },
-        "/task/{id}": {
+        "/api/task/{id}": {
             "put": {
                 "description": "Update Task",
                 "tags": [
@@ -203,7 +203,7 @@
                 }
             }
         },
-        "/user/login": {
+        "/api/user/login": {
             "post": {
                 "description": "Login",
                 "tags": [
@@ -249,7 +249,7 @@
                 }
             }
         },
-        "/user/logout": {
+        "/api/user/logout": {
             "get": {
                 "description": "Logout",
                 "tags": [

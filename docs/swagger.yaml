@@ -75,7 +75,7 @@ info:
   contact: {}
   license: {}
 paths:
-  /column:
+  /api/column:
     get:
       description: Get All Columns
       responses:
@@ -90,7 +90,7 @@ paths:
       summary: Get All Columns
       tags:
       - Column
-  /task:
+  /api/task:
     post:
       description: Create task
       parameters:
@@ -124,7 +124,7 @@ paths:
       summary: Create task
       tags:
       - Task
-  /task/{column_id}:
+  /api/task/{column_id}:
     get:
       description: Get tasks by column id
       parameters:
@@ -145,7 +145,7 @@ paths:
       summary: Get tasks by column id
       tags:
       - Task
-  /task/{id}:
+  /api/task/{id}:
     delete:
       description: Delete Task
       parameters:
@@ -206,7 +206,7 @@ paths:
       summary: Update Task
       tags:
       - Task
-  /user/login:
+  /api/user/login:
     post:
       description: Login
       parameters:
@@ -236,7 +236,7 @@ paths:
       summary: Login
       tags:
       - User
-  /user/logout:
+  /api/user/logout:
     get:
       description: Logout
       responses:
