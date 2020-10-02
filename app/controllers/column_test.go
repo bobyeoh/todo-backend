@@ -15,7 +15,7 @@ import (
 
 func TestGetColumns(t *testing.T) {
 	server := app.NewServer()
-	req := httptest.NewRequest(http.MethodGet, "/", nil)
+	req := httptest.NewRequest(http.MethodGet, "/api/column", nil)
 	rec := httptest.NewRecorder()
 	c := server.Echo.NewContext(req, rec)
 	h := &ColumnHandler{server}

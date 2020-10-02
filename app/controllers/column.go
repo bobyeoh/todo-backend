@@ -27,7 +27,7 @@ func InitColumn(server *app.Server) *ColumnHandler {
 // @Description Get All Columns
 // @Success 200 {object} responses.GetColumns
 // @Failure 500 {object} utils.ErrorCode "UnknownError"
-// @Router /column [get]
+// @Router /api/column [get]
 func (handler *ColumnHandler) GetColumns(c echo.Context) error {
 	var columns []responses.Column
 	auth := c.Get("auth").(*models.Auth)

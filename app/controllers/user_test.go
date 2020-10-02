@@ -15,7 +15,7 @@ func TestLogin(t *testing.T) {
 	loginJSON := `{"name":"test","password":"testtest"}`
 	resultJSON := `{"id":1,"name":"test"}`
 	server := app.NewServer()
-	req := httptest.NewRequest(http.MethodPost, "/user/login", strings.NewReader(loginJSON))
+	req := httptest.NewRequest(http.MethodPost, "/api/user/login", strings.NewReader(loginJSON))
 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	rec := httptest.NewRecorder()
 	c := server.Echo.NewContext(req, rec)
@@ -31,7 +31,7 @@ func TestLoginWithoutName(t *testing.T) {
 	loginJSON := `{"name":"","password":"testtest"}`
 	resultJSON := `{"Code":20002,"Message":"The name is required."}`
 	server := app.NewServer()
-	req := httptest.NewRequest(http.MethodPost, "/user/login", strings.NewReader(loginJSON))
+	req := httptest.NewRequest(http.MethodPost, "/api/user/login", strings.NewReader(loginJSON))
 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	rec := httptest.NewRecorder()
 	c := server.Echo.NewContext(req, rec)
@@ -47,7 +47,7 @@ func TestLoginWithoutPassword(t *testing.T) {
 	loginJSON := `{"name":"test","password":""}`
 	resultJSON := `{"Code":20003,"Message":"The password is required."}`
 	server := app.NewServer()
-	req := httptest.NewRequest(http.MethodPost, "/user/login", strings.NewReader(loginJSON))
+	req := httptest.NewRequest(http.MethodPost, "/api/user/login", strings.NewReader(loginJSON))
 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	rec := httptest.NewRecorder()
 	c := server.Echo.NewContext(req, rec)
@@ -63,7 +63,7 @@ func TestLoginWithInvalidName(t *testing.T) {
 	loginJSON := `{"name":"test1","password":"testtest"}`
 	resultJSON := `{"Code":20001,"Message":"Invalid credentials."}`
 	server := app.NewServer()
-	req := httptest.NewRequest(http.MethodPost, "/user/login", strings.NewReader(loginJSON))
+	req := httptest.NewRequest(http.MethodPost, "/api/user/login", strings.NewReader(loginJSON))
 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	rec := httptest.NewRecorder()
 	c := server.Echo.NewContext(req, rec)
@@ -79,7 +79,7 @@ func TestLoginWithoutInvalidPassword(t *testing.T) {
 	loginJSON := `{"name":"test","password":"testtest1"}`
 	resultJSON := `{"Code":20001,"Message":"Invalid credentials."}`
 	server := app.NewServer()
-	req := httptest.NewRequest(http.MethodPost, "/user/login", strings.NewReader(loginJSON))
+	req := httptest.NewRequest(http.MethodPost, "/api/user/login", strings.NewReader(loginJSON))
 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	rec := httptest.NewRecorder()
 	c := server.Echo.NewContext(req, rec)

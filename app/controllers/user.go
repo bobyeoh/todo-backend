@@ -35,7 +35,7 @@ func InitUser(server *app.Server) *UserHandler {
 // @Failure 400 {object} utils.ErrorCode
 // @Failure 401 {object} utils.ErrorCode "InvalidCredentials"
 // @Failure 500 {object} utils.ErrorCode "UnknownError"
-// @Router /user/login [post]
+// @Router /api/user/login [post]
 func (handler *UserHandler) Login(c echo.Context) error {
 	loginRequest := new(requests.LoginRequest)
 	if err := c.Bind(loginRequest); err != nil {
@@ -112,7 +112,7 @@ func (handler *UserHandler) Login(c echo.Context) error {
 // @Summary Logout
 // @Description Logout
 // @Success 200
-// @Router /user/logout [get]
+// @Router /api/user/logout [get]
 func (handler *UserHandler) Logout(c echo.Context) error {
 	authService := services.InitAuth(handler.server.DB)
 	// init

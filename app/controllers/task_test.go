@@ -18,7 +18,7 @@ import (
 func TestCreateTask(t *testing.T) {
 	createJSON := `{"name":"test task","column_id": 1}`
 	server := app.NewServer()
-	request := httptest.NewRequest(http.MethodPost, "/task", strings.NewReader(createJSON))
+	request := httptest.NewRequest(http.MethodPost, "/api/task", strings.NewReader(createJSON))
 	request.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	record := httptest.NewRecorder()
 	context := server.Echo.NewContext(request, record)
@@ -42,7 +42,7 @@ func TestCreateTaskWithoutName(t *testing.T) {
 	createJSON := `{"name":"","column_id": 1}`
 	resultJSON := `{"Code":30004,"Message":"The task name is required."}`
 	server := app.NewServer()
-	request := httptest.NewRequest(http.MethodPost, "/task", strings.NewReader(createJSON))
+	request := httptest.NewRequest(http.MethodPost, "/api/task", strings.NewReader(createJSON))
 	request.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	record := httptest.NewRecorder()
 	context := server.Echo.NewContext(request, record)
@@ -67,7 +67,7 @@ func TestCreateTaskWithoutColumn(t *testing.T) {
 	createJSON := `{"name":"asaa","column_id": 0}`
 	resultJSON := `{"Code":30003,"Message":"The column id is required."}`
 	server := app.NewServer()
-	request := httptest.NewRequest(http.MethodPost, "/task", strings.NewReader(createJSON))
+	request := httptest.NewRequest(http.MethodPost, "/api/task", strings.NewReader(createJSON))
 	request.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	record := httptest.NewRecorder()
 	context := server.Echo.NewContext(request, record)
@@ -92,7 +92,7 @@ func TestCreateTaskWithoutNotExistColumn(t *testing.T) {
 	createJSON := `{"name":"asaa","column_id": 5}`
 	resultJSON := `{"Code":30002,"Message":"The column does not exist."}`
 	server := app.NewServer()
-	request := httptest.NewRequest(http.MethodPost, "/task", strings.NewReader(createJSON))
+	request := httptest.NewRequest(http.MethodPost, "/api/task", strings.NewReader(createJSON))
 	request.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	record := httptest.NewRecorder()
 	context := server.Echo.NewContext(request, record)
@@ -115,7 +115,7 @@ func TestCreateTaskWithoutNotExistColumn(t *testing.T) {
 func TestUpdateTask(t *testing.T) {
 	createJSON := `{"name":"test task1","column_id": 1}`
 	server := app.NewServer()
-	request := httptest.NewRequest(http.MethodPut, "/task/", strings.NewReader(createJSON))
+	request := httptest.NewRequest(http.MethodPut, "/api/task/", strings.NewReader(createJSON))
 	request.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	record := httptest.NewRecorder()
 	context := server.Echo.NewContext(request, record)
@@ -141,7 +141,7 @@ func TestUpdateTaskNotExist(t *testing.T) {
 	resultJSON := `{"Code":30001,"Message":"The task does not exist."}`
 	createJSON := `{"name":"test task1","column_id": 1}`
 	server := app.NewServer()
-	request := httptest.NewRequest(http.MethodPut, "/task/", strings.NewReader(createJSON))
+	request := httptest.NewRequest(http.MethodPut, "/api/task/", strings.NewReader(createJSON))
 	request.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	record := httptest.NewRecorder()
 	context := server.Echo.NewContext(request, record)
@@ -168,7 +168,7 @@ func TestUpdateTaskWithoutName(t *testing.T) {
 	resultJSON := `{"Code":30004,"Message":"The task name is required."}`
 	createJSON := `{"name":"","column_id": 1}`
 	server := app.NewServer()
-	request := httptest.NewRequest(http.MethodPut, "/task/", strings.NewReader(createJSON))
+	request := httptest.NewRequest(http.MethodPut, "/api/task/", strings.NewReader(createJSON))
 	request.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	record := httptest.NewRecorder()
 	context := server.Echo.NewContext(request, record)
@@ -195,7 +195,7 @@ func TestUpdateTaskWithoutColumn(t *testing.T) {
 	resultJSON := `{"Code":30003,"Message":"The column id is required."}`
 	createJSON := `{"name":"test","column_id": 0}`
 	server := app.NewServer()
-	request := httptest.NewRequest(http.MethodPut, "/task/", strings.NewReader(createJSON))
+	request := httptest.NewRequest(http.MethodPut, "/api/task/", strings.NewReader(createJSON))
 	request.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	record := httptest.NewRecorder()
 	context := server.Echo.NewContext(request, record)
@@ -220,7 +220,7 @@ func TestUpdateTaskWithoutColumn(t *testing.T) {
 
 func TestDeleteTask(t *testing.T) {
 	server := app.NewServer()
-	request := httptest.NewRequest(http.MethodDelete, "/task/", nil)
+	request := httptest.NewRequest(http.MethodDelete, "/api/task/", nil)
 	request.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	record := httptest.NewRecorder()
 	context := server.Echo.NewContext(request, record)
@@ -244,7 +244,7 @@ func TestDeleteTask(t *testing.T) {
 
 func TestGetTasks(t *testing.T) {
 	server := app.NewServer()
-	request := httptest.NewRequest(http.MethodGet, "/task", nil)
+	request := httptest.NewRequest(http.MethodGet, "/api/task", nil)
 	record := httptest.NewRecorder()
 	context := server.Echo.NewContext(request, record)
 	handler := &TaskHandler{server}

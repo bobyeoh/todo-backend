@@ -32,7 +32,7 @@ func InitTask(server *app.Server) *TaskHandler {
 // @Param column_id path int true "Column ID"
 // @Success 200 {object} responses.GetTasks
 // @Failure 500 {object} utils.ErrorCode "UnknownError"
-// @Router /task/{column_id} [get]
+// @Router /api/task/{column_id} [get]
 func (handler *TaskHandler) GetTasks(c echo.Context) error {
 	var tasks []responses.Task
 	columnID, _ := strconv.Atoi(c.Param("column_id"))
@@ -56,7 +56,7 @@ func (handler *TaskHandler) GetTasks(c echo.Context) error {
 // @Failure 403 {object} utils.ErrorCode "PermissionDenied"
 // @Failure 404 {object} utils.ErrorCode "TheTaskDoesNotExist"
 // @Failure 500 {object} utils.ErrorCode "UnknownError"
-// @Router /task [post]
+// @Router /api/task [post]
 func (handler *TaskHandler) CreateTask(c echo.Context) error {
 	column := models.Column{}
 	auth := c.Get("auth").(*models.Auth)
@@ -112,7 +112,7 @@ func (handler *TaskHandler) CreateTask(c echo.Context) error {
 // @Failure 403 {object} utils.ErrorCode "PermissionDenied"
 // @Failure 404 {object} utils.ErrorCode "TheTaskDoesNotExist"
 // @Failure 500 {object} utils.ErrorCode "UnknownError"
-// @Router /task/{id} [put]
+// @Router /api/task/{id} [put]
 func (handler *TaskHandler) UpdateTask(c echo.Context) error {
 	var task models.Task
 	var newColumn models.Column
@@ -186,7 +186,7 @@ func (handler *TaskHandler) UpdateTask(c echo.Context) error {
 // @Failure 403 {object} utils.ErrorCode "PermissionDenied"
 // @Failure 404 {object} utils.ErrorCode "TheTaskDoesNotExist"
 // @Failure 500 {object} utils.ErrorCode "UnknownError"
-// @Router /task/{id} [delete]
+// @Router /api/task/{id} [delete]
 func (handler *TaskHandler) DeleteTask(c echo.Context) error {
 	var task models.Task
 	id, _ := strconv.Atoi(c.Param("id"))
