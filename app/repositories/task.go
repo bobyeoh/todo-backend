@@ -19,7 +19,7 @@ func InitTask(db *gorm.DB) *TaskRepository {
 
 // GetTasks godoc
 func (repo *TaskRepository) GetTasks(columnID uint, userID uint, tasks *[]responses.Task) error {
-	return repo.Db.Model(&models.Task{}).Where("user_id = ? and column_id", userID, columnID).Scan(tasks).Error
+	return repo.Db.Model(&models.Task{}).Where("user_id = ? and column_id = ?", userID, columnID).Scan(tasks).Error
 }
 
 // GetTask godoc
