@@ -27,7 +27,7 @@ func Routes(server *app.Server) {
 	server.Echo.GET(prefix+"/column", column.GetColumns, permission.Auth(server))
 
 	server.Echo.GET(prefix+"/task/:column_id", task.GetTasks, permission.Auth(server))
-	server.Echo.POST(prefix+"/task/:id", task.CreateTask, permission.Auth(server))
+	server.Echo.POST(prefix+"/task/", task.CreateTask, permission.Auth(server))
 	server.Echo.PUT(prefix+"/task/:id", task.UpdateTask, permission.Auth(server))
 	server.Echo.DELETE(prefix+"/task/:id", task.DeleteTask, permission.Auth(server))
 }
