@@ -21,8 +21,8 @@ When the container is running
     sh test.sh
 
 **Preview**
-
-https://todo.001.gs/api/swagger/index.html
+frontend: https://todo.001.gs
+swagger: https://todo.001.gs/api/swagger/index.html
 
 
 # Dependency
